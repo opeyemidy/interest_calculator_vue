@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <body>
+      <div class="wrapper" id="app">
+        <h2 v-if="picked == 1">Compound Interest Calculator</h2>
+        <h2 v-else>Simple Interest Calculator</h2>
+        <p v-if="picked == 1">
+          Fill in the appropriate values to calculate your compound interest
+        </p>
+        <p v-else>
+          Fill in the appropriate values to calculate your simple interest
+        </p>
+        <div class="container">
+          <div class="row">
+            <div class="col-25">
+              <label for="fname">Principal</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="number"
+                v-model="principal"
+                placeholder="Enter the principal amount"
+                @keyup="calculate"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label>Rate</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="number"
+                v-model="rate"
+                @keyup="calculate"
+                placeholder="Enter Rate of interest charged"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label>Duration</label>
+            </div>
+            <div class="col-75">
+              <input
+                v-model="time"
+                @keyup="calculate"
+                type="number"
+                placeholder="Enter number of years"
+              />
+            </div>
+          </div>
+          <div class="row" v-if="picked == 1">
+            <div class="col-25">
+              <label>Number</label>
+            </div>
+            <div class="col-75">
+              <input
+                type="number"
+                v-model="number"
+                @keyup="calculate"
+                placeholder="Enter number of compounds per year"
+              />
+            </div>
+          </div>
+          <div class="row result">
+            <div>
+              <div v-if="!result" class="category">
+                <input
+                  v-model="picked"
+                  name="picked"
+                  type="radio"
+                  v-bind:value="'1'"
+                />
+                <label for="one">Compound Interest</label>
+                <br />
+                <input
+                  v-model="picked"
+                  name="picked"
+                  type="radio"
+                  v-bind:value="'2'"
+                />
+                <label for="two">Simple Interest</label>
+              </div>
+              <div v-if="result">{{totalpayback}}</div>
+              <div v-if="result">{{interest}}</div>
+            </div>
+            <div class="reset-btn">
+              <button @click="reset">
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script src="./app.js"></script>
+  </body>
+</html>
