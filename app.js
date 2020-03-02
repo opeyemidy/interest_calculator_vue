@@ -35,11 +35,15 @@ new Vue({
       myswitch = this.picked;
       let rate = this.rate / 100;
       if (myswitch == 1) {
-        this.amount = this.principal * (1 + rate / this.number) ** (this.number * this.time);
+        this.amount =
+          this.principal *
+          (1 + rate / this.number) ** (this.number * this.time);
         this.interest = this.amount - this.principal;
       } else {
         this.interest = this.principal * rate * this.time;
-        this.amount = eval(parseFloat(this.principal) + parseFloat(this.interest));
+        this.amount = eval(
+          parseFloat(this.principal) + parseFloat(this.interest)
+        );
       }
 
       this.amount = this.roundOff(this.amount);
